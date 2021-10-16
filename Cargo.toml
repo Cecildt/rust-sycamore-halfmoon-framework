@@ -1,7 +1,7 @@
 [package]
 authors = [""]
 edition = "2018"
-name = "sycamore-trunk-gitpod-template"
+name = "rust-sycamore-halfmoon-framework"
 version = "0.1.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -12,7 +12,8 @@ console_log = "0.2.0"
 log = "0.4.14"
 sycamore = "0.6.2"
 wasm-bindgen = "0.2.78"
+js-sys = "0.3.55"
 
 [dependencies.web-sys]
-features = ["HtmlInputElement", "InputEvent"]
+features = ["HtmlInputElement", "InputEvent", "HtmlElement", "DomTokenList", "Element"]
 version = "0.3.55"

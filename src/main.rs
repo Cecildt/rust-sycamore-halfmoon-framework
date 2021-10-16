@@ -1,13 +1,17 @@
 use sycamore::prelude::*;
 
+use crate::components::halfmoon_starter;
+
 mod layouts;
 mod components;
 
+type BasicLayoutStarter<G> = layouts::base::BaseLayout<G, halfmoon_starter::HalfmoonStarter<G>>;
+
 #[component(App<G>)]
 fn app() -> Template<G> {
+
     template! {
-        layouts::base::BaseLayout()
-        // components::Hello()
+        BasicLayoutStarter()
     }
 }
 

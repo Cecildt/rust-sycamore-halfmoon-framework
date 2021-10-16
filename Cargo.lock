@@ -212,6 +212,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "rust-sycamore-halfmoon-framework"
+version = "0.1.0"
+dependencies = [
+ "console_error_panic_hook",
+ "console_log",
+ "js-sys",
+ "log",
+ "sycamore",
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "smallvec"
 version = "1.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -261,18 +274,6 @@ dependencies = [
  "ahash",
  "indexmap",
  "smallvec",
- "wasm-bindgen",
- "web-sys",
-]
-
-[[package]]
-name = "sycamore-trunk-gitpod-template"
-version = "0.1.0"
-dependencies = [
- "console_error_panic_hook",
- "console_log",
- "log",
- "sycamore",
  "wasm-bindgen",
  "web-sys",
 ]
