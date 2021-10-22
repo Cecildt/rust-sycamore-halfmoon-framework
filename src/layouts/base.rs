@@ -3,7 +3,7 @@ use sycamore::component::Component;
 use sycamore::prelude::*;
 use web_sys::{Event, HtmlElement};
 
-use crate::common::utils::to_array;
+use crate::common::{cookie::{create_cookie, erase_cookie, read_cookie}, utils::to_array};
 
 #[derive(Debug, Clone)]
 pub struct BaseState {
@@ -44,10 +44,12 @@ pub fn base_layout<C: Component<G, Props = i32>>() -> Template<G> {
         if tokens.contains("dark-mode") {
             body.class_list().remove(&to_array(&["dark-mode"])).expect("Failed to remove dark mode");
             base_state.dark_mode.set(false);
+            create_cookie("halfmoon_preferredMode", "light-mode", 365);
         } else {
             tokens.add(&to_array(&["dark-mode"])).expect("Failed to add dark mode ");
             body.class_list().set_value(&tokens.value());
             base_state.dark_mode.set(true);
+            create_cookie("halfmoon_preferredMode", "dark-mode", 365);
         }
 
         event.stop_propagation()
@@ -58,18 +60,36 @@ pub fn base_layout<C: Component<G, Props = i32>>() -> Template<G> {
     let client_width = document.document_element().unwrap().client_width();
 
     // Set dark mode
+    // Automatically set preferred theme
+    // But only if one of the data-attribute is provided
+    // TODO: Complete Logic
+    info!("Cookie value: {}", read_cookie("halfmoon_preferredMode"));
+    
+    if read_cookie("halfmoon_preferredMode") == "dark-mode" {
+        base_state.dark_mode.set(true);
+    } else {
+        base_state.dark_mode.set(false);
+    }
+
     let body = document
         .body()
         .expect("document expect to have have a body");
     let tokens = body.class_list();
-    tokens
+
+    if *base_state.dark_mode.get() {
+        tokens
         .add(&to_array(&["dark-mode"]))
-        .expect("Failed to add dark mode ");
+        .expect("Failed to add dark mode ");    
+    }
+
     body.class_list().set_value(&tokens.value());
 
+    // Hiding sidebar on first load on small screens (unless data-attribute provided)
+    // Or on larger screens when sidebar type is overlayed-all -- 
+    // TODO: Complete logic
     if client_width <= 768 {
         template! {
-            div(ref=wrapper_ref, class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom", data-sidebar-hidden="hidden") {
+            div(ref=wrapper_ref, class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom with-transitions", data-sidebar-hidden="hidden") {
                 div(class="sticky-alerts")
                 nav(class="navbar") {
                     button(class="btn btn-sm", type="button", on:click=handle_sidebar_click){ "Sidebar" }
@@ -85,7 +105,7 @@ pub fn base_layout<C: Component<G, Props = i32>>() -> Template<G> {
         }
     } else {
         template! {
-            div(ref=wrapper_ref, class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom") {
+            div(ref=wrapper_ref, class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom with-transitions") {
                 div(class="sticky-alerts")
                 nav(class="navbar") {
                     button(class="btn btn-sm", type="button", on:click=handle_sidebar_click){ "Sidebar" }

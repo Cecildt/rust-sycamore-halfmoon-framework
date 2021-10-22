@@ -13,7 +13,8 @@ log = "0.4.14"
 sycamore = "0.6.2"
 wasm-bindgen = "0.2.78"
 js-sys = "0.3.55"
+chrono = { version = "0.4.19", features = ["wasmbind"]}
 
 [dependencies.web-sys]
-features = ["HtmlInputElement", "InputEvent", "HtmlElement", "DomTokenList", "Element", "Document", "Window"]
+features = ["HtmlInputElement", "InputEvent", "HtmlElement", "DomTokenList", "Element", "Document", "Window", "HtmlDocument"]
 version = "0.3.55"
