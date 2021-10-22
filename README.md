@@ -8,7 +8,17 @@ For a more thorough explanation of Trunk and its features, please head over to t
 
 ### Running
 
-Just click on the button above to start a workspace. Trunk will automatically be installed and a dev server will automatically be started.
+**Ensure Trunk is installed.**
+
+```bash
+cargo install --locked trunk
+```
+
+Trunk will automatically build and a dev server will automatically be started.
+
+```bash
+trunk serve
+```
 
 ### Release
 
