@@ -16,5 +16,15 @@ js-sys = "0.3.55"
 chrono = { version = "0.4.19", features = ["wasmbind"]}
 
 [dependencies.web-sys]
-features = ["HtmlInputElement", "InputEvent", "HtmlElement", "DomTokenList", "Element", "Document", "Window", "HtmlDocument"]
+features = [
+    "HtmlInputElement", 
+    "InputEvent", 
+    "HtmlElement", 
+    "DomTokenList", 
+    "Element", 
+    "Document", 
+    "Window", 
+    "HtmlDocument", 
+    "MediaQueryList",
+    "Window"]
 version = "0.3.55"

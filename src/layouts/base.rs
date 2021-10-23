@@ -62,13 +62,26 @@ pub fn base_layout<C: Component<G, Props = i32>>() -> Template<G> {
     // Set dark mode
     // Automatically set preferred theme
     // But only if one of the data-attribute is provided
-    // TODO: Complete Logic
-    info!("Cookie value: {}", read_cookie("halfmoon_preferredMode"));
+    let theme = read_cookie("halfmoon_preferredMode");
     
-    if read_cookie("halfmoon_preferredMode") == "dark-mode" {
-        base_state.dark_mode.set(true);
-    } else {
-        base_state.dark_mode.set(false);
+    match theme.as_str() {
+        "dark-mode" => { base_state.dark_mode.set(true); },
+        "light-mode" => { base_state.dark_mode.set(false); },
+        _ => {
+            let dark_match = window.match_media("(prefers-color-scheme: dark)").expect("No media match.");
+            match dark_match {
+                Some(value) => {
+                    if value.matches() {
+                        base_state.dark_mode.set(true);    
+                    } else {
+                        base_state.dark_mode.set(false);
+                    }                    
+                },
+                None => {
+                    base_state.dark_mode.set(false);
+                }
+            }
+        }
     }
 
     let body = document
