@@ -3,7 +3,7 @@ use sycamore::component::Component;
 use sycamore::prelude::*;
 use web_sys::{Event, HtmlElement};
 
-use crate::common::{cookie::{create_cookie, erase_cookie, read_cookie}, utils::to_array};
+use crate::common::{cookie::{create_cookie, read_cookie}, hotkeys::init_hotkeys, utils::to_array};
 
 #[derive(Debug, Clone)]
 pub struct BaseState {
@@ -86,7 +86,7 @@ pub fn base_layout<C: Component<G, Props = i32>>() -> Template<G> {
 
     let body = document
         .body()
-        .expect("document expect to have have a body");
+        .expect("Document expect to have have a body");
     let tokens = body.class_list();
 
     if *base_state.dark_mode.get() {
@@ -96,6 +96,7 @@ pub fn base_layout<C: Component<G, Props = i32>>() -> Template<G> {
     }
 
     body.class_list().set_value(&tokens.value());
+    init_hotkeys();
 
     // Hiding sidebar on first load on small screens (unless data-attribute provided)
     // Or on larger screens when sidebar type is overlayed-all -- 

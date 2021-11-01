@@ -39,6 +39,7 @@ pub fn read_cookie(name: &str) -> String {
     }   
 }
 
+#[allow(dead_code)]
 pub fn erase_cookie(name: &str) {
     create_cookie(name, "", -1)
 }
