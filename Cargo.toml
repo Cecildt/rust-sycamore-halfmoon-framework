@@ -1,6 +1,6 @@
 [package]
 authors = [""]
-edition = "2018"
+edition = "2021"
 name = "rust-sycamore-halfmoon-framework"
 version = "0.1.0"
 
@@ -10,10 +10,14 @@ version = "0.1.0"
 console_error_panic_hook = "0.1"
 console_log = "0.2"
 log = "0.4"
-sycamore = "0.6"
+sycamore = { version = "0.8.0-beta.3",  features = ["serde"] }
 wasm-bindgen = "0.2"
 js-sys = "0.3"
 chrono = { version = "0.4", features = ["wasmbind"]}
+serde = { version = "1.0.130", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "0.8", features = ["v4", "wasm-bindgen", "serde"] }
+
 
 [dependencies.web-sys]
 features = [
@@ -27,5 +31,8 @@ features = [
     "HtmlDocument", 
     "MediaQueryList",
     "Window",
-    "EventListener"]
+    "EventListener",
+    "KeyboardEvent", 
+    "Location", 
+    "Storage"]
 version = "0.3"

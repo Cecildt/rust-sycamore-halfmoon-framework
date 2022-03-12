@@ -1,8 +1,8 @@
 use sycamore::prelude::*;
 
-#[component(HalfmoonStarter<G>)]
-pub fn halfmoon_starter_component(prop: i32) -> Template<G> {
-    template! {
+#[component]
+pub fn HalfmoonStarter<G: Html>(ctx: ScopeRef, _prop: i32) -> View<G> {
+    view! { ctx,
         div(class="w-full h-full d-flex align-items-center justify-content-center") {
             div(class="content"){
                 h1(class="content-title") { "Halfmoon starter links" }
@@ -17,9 +17,6 @@ pub fn halfmoon_starter_component(prop: i32) -> Template<G> {
                 }
                 div{
                     a(class="btn btn-link px-0", href="https://www.twitter.com/halfmoonui", target="_blank") { "Follow on Twitter for updates" }
-                }
-                div{
-                    strong { (format!("Value: {}", prop))  }
                 }
             }
         }
