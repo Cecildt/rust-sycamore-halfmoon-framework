@@ -1,3 +1,89 @@
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.todomvc-wrapper{
+    margin: 5px 5px 0 20px;
+}
+
+
+.todoapp {
+	margin: 5px 5px 0 0;
+	position: relative;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.main {
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6e6e6;
+}
+
+.todo-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.todo-list li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+.todo-list li.completed label {
+	color: #d9d9d9;
+	text-decoration: line-through;
+}
+
+.todo-list li .destroy {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+}
+
+
+.footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	border-top: 1px solid #337660;
+    height: 7em;
+}
+
+.filters {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+.filters li {
+	display: inline;
+}
+
+.filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li a:hover {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters li a.selected {
+	border-color: rgba(175, 47, 47, 0.2);
+}

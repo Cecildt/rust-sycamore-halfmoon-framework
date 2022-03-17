@@ -1,5 +1,6 @@
 use sycamore::prelude::*;
 
+#[allow(dead_code)]
 #[component]
 pub fn HalfmoonStarter<G: Html>(ctx: ScopeRef, _prop: i32) -> View<G> {
     view! { ctx,

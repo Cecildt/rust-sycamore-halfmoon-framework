@@ -8,6 +8,7 @@ use crate::common::{
     utils::to_array,
 };
 
+#[allow(non_snake_case)]
 pub fn BaseLayout<G: Html>(Comp: &dyn Fn(ScopeRef, i32) -> View<G>,) -> impl Fn(ScopeRef, ()) -> View<G> + '_ {
     move |ctx, _| {
         let dark_mode_state = ctx.create_signal(true);

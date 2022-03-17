@@ -26,7 +26,7 @@ pub fn Header<G: Html>(ctx: ScopeRef) -> View<G> {
     view! { ctx,
         header(class="header") {
             h1 { "todos" }
-            input(class="new-todo",
+            input(class="new-todo, form-control",
                 placeholder="What needs to be done?",
                 bind:value=value,
                 on:keyup=handle_submit,

@@ -1,10 +1,11 @@
 use sycamore::prelude::*;
-use wasm_bindgen::JsCast;
 use web_sys::{Event, HtmlInputElement};
+use wasm_bindgen::JsCast;
 
+#[allow(dead_code)]
 #[component]
 pub fn Hello<G: Html>(ctx: ScopeRef) -> View<G> {
-    let name = ctx.create_signal("");
+    let name = ctx.create_signal("".to_owned());
 
     let displayed_name = || {
         if name.get().is_empty() {
@@ -15,14 +16,10 @@ pub fn Hello<G: Html>(ctx: ScopeRef) -> View<G> {
     };
 
     let handle_change = move |event: Event| {
-        // let value = event
-        // .target()
-        // .unwrap()
-        // .dyn_into::<HtmlInputElement>()
-        // .unwrap()
-        // .value().as_str();
-
-        // name.set(value);
+        let target = event.target().unwrap();
+        let input = target.dyn_into::<HtmlInputElement>().unwrap();
+        let value = input.value();
+        name.set(value);
     };
 
     view! {ctx, 

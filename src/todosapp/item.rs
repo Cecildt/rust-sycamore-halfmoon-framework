@@ -96,22 +96,27 @@ pub fn Item<G: Html>(ctx: ScopeRef, todo: RcSignal<Todo>) -> View<G> {
     view! { ctx,
         li(class=class()) {
             div(class="view") {
-                input(
-                    class="toggle",
-                    type="checkbox",
-                    on:input=toggle_completed,
-                    bind:checked=checked
-                )
-                label(on:dblclick=handle_dblclick) {
-                    (title())
+                div(class="custom-checkbox"){
+                    input(
+                        type="checkbox",
+                        on:input=toggle_completed,
+                        bind:checked=checked
+                    )
+                    label(on:dblclick=handle_dblclick) {
+                        (title())
+                    }
+                }                
+                div{
+                    button(class="btn btn-sm rounded-circle destroy", on:click=handle_destroy){
+                        "X"
+                    }
                 }
-                button(class="destroy", on:click=handle_destroy)
             }
 
             (if *editing.get() {
                 view! { ctx,
                     input(ref=input_ref,
-                        class="edit",
+                        class="form-control",
                         value=todo.get().title.clone(),
                         on:blur=move |_| handle_blur(),
                         on:keyup=handle_submit,

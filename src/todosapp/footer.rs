@@ -18,7 +18,7 @@ pub fn Footer<G: Html>(ctx: ScopeRef) -> View<G> {
 
     view! { ctx,
         footer(class="footer") {
-            span(class="todo-count") {
+            span(class="todo-count", style="margin-bottom:1em;margin-left:1em;") {
                 strong { (app_state.todos_left()) }
                 span { " " (items_text()) " left" }
             }
@@ -30,7 +30,7 @@ pub fn Footer<G: Html>(ctx: ScopeRef) -> View<G> {
 
             (if *has_completed_todos.get() {
                 view! { ctx,
-                    button(class="clear-completed", on:click=handle_clear_completed) {
+                    button(class="btn clear-completed", style="margin-bottom:1em;margin-left:1em;", on:click=handle_clear_completed) {
                         "Clear completed"
                     }
                 }

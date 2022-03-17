@@ -6,7 +6,7 @@ pub fn Copyright<G: Html>(ctx: ScopeRef) -> View<G> {
         footer(class="info") {
             p { "Double click to edit a todo" }
             p {
-                "Created by "
+                "Orginal Created for Sycamore examples by "
                 a(href="https://github.com/lukechu10", target="_blank") { "lukechu10" }
             }
             p {

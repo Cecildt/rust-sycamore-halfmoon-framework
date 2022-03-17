@@ -16,7 +16,7 @@ impl Default for Filter {
 }
 
 impl Filter {
-    fn url(self) -> &'static str {
+    pub fn url(self) -> &'static str {
         match self {
             Filter::All => "#",
             Filter::Active => "#/active",
@@ -24,7 +24,7 @@ impl Filter {
         }
     }
 
-    fn get_filter_from_hash() -> Self {
+    pub fn get_filter_from_hash() -> Self {
         let hash = web_sys::window().unwrap().location().hash().unwrap();
 
         match hash.as_str() {
@@ -44,7 +44,7 @@ pub fn TodoFilter<G: Html>(ctx: ScopeRef, filter: Filter) -> View<G> {
     view! { ctx,
         li {
             a(
-                class=if selected() { "selected" } else { "" },
+                class=if selected() { "hyperlink selected" } else { "hyperlink" },
                 href=filter.url(),
                 on:click=move |_| set_filter(filter),
             ) {

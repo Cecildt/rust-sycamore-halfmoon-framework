@@ -2,7 +2,6 @@ use sycamore::prelude::*;
 
 use crate::todosapp::{app_state::AppState, filter::Filter, item::Item};
 
-
 #[component]
 pub fn List<G: Html>(ctx: ScopeRef) -> View<G> {
     let app_state = ctx.use_context::<AppState>();
@@ -32,15 +31,17 @@ pub fn List<G: Html>(ctx: ScopeRef) -> View<G> {
 
     view! { ctx,
         section(class="main") {
-            input(
-                id="toggle-all",
-                class="toggle-all",
-                type="checkbox",
-                readonly=true,
-                bind:checked=checked,
-                on:input=|_| app_state.toggle_complete_all()
-            )
-            label(for="toggle-all")
+            div(class="custom-switch", style="margin-bottom: 1em;margin-top: 1em;") {
+                input(
+                    id="toggle-all",
+                    class="toggle-all",
+                    type="checkbox",
+                    readonly=true,
+                    bind:checked=checked,
+                    on:input=|_| app_state.toggle_complete_all()
+                )
+                label(for="toggle-all"){"Toggle all"}
+            }
 
             ul(class="todo-list") {
                 Keyed {
