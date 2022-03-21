@@ -1,8 +1,8 @@
 use sycamore::{prelude::*};
 use wasm_bindgen::JsCast;
-use web_sys::{Event, HtmlInputElement, KeyboardEvent};
+use web_sys::{Event, HtmlInputElement, KeyboardEvent, console};
 
-use crate::todosapp::app_state::AppState;
+use crate::{todosapp::app_state::AppState, common::utils::to_array};
 
 use super::todo::Todo;
 
@@ -99,10 +99,11 @@ pub fn Item<G: Html>(ctx: ScopeRef, todo: RcSignal<Todo>) -> View<G> {
                 div(class="custom-checkbox"){
                     input(
                         type="checkbox",
+                        id=format!("todo-{}", id),
                         on:input=toggle_completed,
                         bind:checked=checked
                     )
-                    label(on:dblclick=handle_dblclick) {
+                    label(for=format!("todo-{}", id), on:dblclick=handle_dblclick) {
                         (title())
                     }
                 }                
